@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="scripts/register.js" defer></script>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="icon" href="/resources/icon/icon.png" />
+    <title>Register - Tasker</title>
+  </head>
+  <body>
+    <header><h1>Register</h1></header>
+    <main>
+      <div class="form-container">
+        <h2>Register</h2>
+        <form id="register-form">
+          <label for="user">User:</label>
+          <input type="text" name="user" id="user" placeholder="Username" />
+
+          <label for="email">E-mail:</label>
+          <input type="email" name="email" id="email" placeholder="Email" />
+
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+
+          <button type="submit">Register</button>
+          <span class="error display"
+            >Error, username, password, or mail invalid.</span
+          >
+        </form>
+        <a href="/">Login</a>
+      </div>
+    </main>
+  </body>
+</html>

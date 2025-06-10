@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="icon" href="/resources/icon/icon.png" />
+    <script src="scripts/login.js" defer></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Tasker!</h1>
+    </header>
+    <main>
+      <div class="form-container">
+        <h2>Iniciar sesión</h2>
+        <form id="login-form">
+          <label for="user">User:</label>
+          <input type="text" name="user" id="user" placeholder="Username" />
+
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <button type="submit">Login</button>
+          <span class="error display">Error, try again...</span>
+        </form>
+        <a href="/register">Register</a>
+      </div>
+    </main>
+  </body>
+</html>
