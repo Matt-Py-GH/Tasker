@@ -5,6 +5,8 @@ import {query} from "../model/model.js"
 
 dotenv.config()
 
+var userLogged = "";
+
 async function Login(req, res){
 
     const {user, password} = req.body
@@ -19,6 +21,7 @@ async function Login(req, res){
       }
       
     const usuarioBD = resultado.rows[0];
+    userLogged = usuarioBD.username;
 
     const passwordCorrecta = await bcryptjs.compare(password, usuarioBD.password);
 
@@ -36,9 +39,10 @@ async function Login(req, res){
         path:"/"
     }
 
+
     res.cookie("jwt", token, cookie)
 
-    res.send({status:"OK", message:"Éxito",redirect:"/home"})
+    res.send({status:"OK", message:"Éxito",redirect:"/home", userLogged})
 }
 
 async function Register(req, res){

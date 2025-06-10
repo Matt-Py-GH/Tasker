@@ -1,0 +1,32 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(100deg, #9106ee, #ad0bec, #d806eb, #3f00b3);
+}
+
+header {
+  font-family: "JetBrains Mono";
+  display: flex;
+  justify-content: space-around;
+  gap: 70%;
+}
+
+#titulo {
+  color: white;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  background-color: #8400ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #3f00b3;
+}

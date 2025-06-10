@@ -33,5 +33,10 @@ server.use(cookieParser())
 server.get("/",authorization.LoginIfNotAuth, (req, res) => {res.sendFile(__dirname + "/pages/login.html")})
 server.get("/register", authorization.LoginIfNotAuth,(req, res) => {res.sendFile(__dirname + "/pages/register.html")})
 server.get("/home",authorization.HomeIfVerified, (req, res) => {res.sendFile(__dirname + "/pages/home.html")})
+server.get("/api/usuario", authorization.GetUserFromToken, (req, res) => {
+    res.json({ username: req.user });
+});
+
+
 server.post("/api/register",  auth.Register)
 server.post("/api/login",  auth.Login)
