@@ -31,7 +31,7 @@ server.use(express.json())
 server.use(cookieParser())
 
 
-//Rutas
+//GET
 server.get("/",authorization.LoginIfNotAuth, (req, res) => {res.sendFile(__dirname + "/pages/login.html")})
 server.get("/register", authorization.LoginIfNotAuth,(req, res) => {res.sendFile(__dirname + "/pages/register.html")})
 server.get("/home",authorization.HomeIfVerified, (req, res) => {res.sendFile(__dirname + "/pages/home.html")})
@@ -52,5 +52,38 @@ server.get("/api/tareas", authorization.GetUserFromToken, async (req, res) => {
   });
 
 
+//POST
 server.post("/api/register",  auth.Register)
 server.post("/api/login",  auth.Login)
+server.post("/api/tareas", authorization.GetUserFromToken, async (req, res) => {
+  const { nombre, descripcion, prioridad } = req.body;
+  const idUsuario = req.userID;
+
+  if (!nombre || !prioridad) {
+    return res.status(400).json({ status: "Error", message: "Faltan datos obligatorios." });
+  }
+
+  try {
+    const resultado = await query(
+      `INSERT INTO Tarea (nombre, descripcion, estado, prioridad, idUsuario)
+       VALUES ($1, $2, 'Incompleta', $3, $4)
+       RETURNING *`,
+      [nombre, descripcion, prioridad, idUsuario]
+    );
+
+    return res.status(201).json({ status: "OK", tarea: resultado.rows[0] });
+  } catch (error) {
+    console.error("Error al insertar tarea:", error.message);
+    return res.status(500).json({ status: "Error", message: "Error interno del servidor." });
+  }
+});
+
+//DELETE
+server.delete("/api/tareas", authorization.GetUserFromToken, async (req, res) => {
+  const idUsuario = req.userID;
+  const resultado = await query('SELECT * FROM tarea WHERE idUsuario = $1', [idUsuario]);
+
+  await query("DELETE FROM Tarea WHERE id = $1", [req.id])
+
+});
+

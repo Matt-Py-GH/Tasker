@@ -11,7 +11,7 @@ async function obtenerUsername() {
       return data.username;  // Devuelve el username
     } catch (error) {
       console.error('Error al obtener username:', error);
-      return null;  // O lo que prefieras para manejar el error
+      return null;
     }
   }
 
@@ -38,12 +38,12 @@ const titleUser = document.getElementById("titulo")
 const spanTest = document.getElementById("span")
 
 obtenerUsername().then(username => {
-    if (username) {
-      titleUser.innerText += " " + username;
-    }
-    else{
-        titleUser.innerText = "Hello there!"
-    }
+  if (username) {
+    titleUser.innerText += " " + username;
+  }
+  else{
+      titleUser.innerText = "Hello there!"
+  }
   });
 
 
@@ -55,21 +55,68 @@ GetTasksByUser().then(tareas => {
   ulCompletas.innerHTML = "";
   
   if (!tareas || tareas.length === 0) {
-    ul.innerHTML = "<li>No tienes tareas aún.</li>";
+    ulIncompletas.innerHTML = "<li>No tienes tareas aún.</li>";
     return;
   }
-  console.log(tareas.length)
   
-tareas.forEach(tarea => {
-  const li = document.createElement("li");
-  li.innerText = tarea.nombre
-  if(tarea.estado == "Completada"){
-    ulCompletas.appendChild(li);
-  }
-  else{
-    ulIncompletas.appendChild(li)
-  }
+  tareas.forEach(tarea => {
+    const li = document.createElement("li");
+    li.addEventListener("click", () => {
+      const cardTask = document.getElementById("card-task");
+      cardTask.classList.toggle("card-none", false)});
+    li.innerText = tarea.nombre
+    if(tarea.estado == "Completada"){
+      ulCompletas.appendChild(li);
+    }
+    else{
+      ulIncompletas.appendChild(li)
+    }
 });
-}).catch(error => {
-  console.error(error);
-});  
+  }).catch(error => {
+    console.error(error);
+});
+
+
+const addTask = document.getElementById("addTask").addEventListener("click", AddTask)
+
+function AddTask() {
+  const nombre = document.getElementById("task-name").value;
+  const descripcion = document.getElementById("task-desc").value;
+  const prioridad = parseInt(document.getElementById("task-priority").value);
+
+  if (!nombre) {
+    alert("El nombre de la tarea es obligatorio.");
+    return;
+  }
+
+  fetch("/api/tareas", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      nombre,
+      descripcion,
+      prioridad
+    })
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Error al agregar tarea.");
+    return res.json();
+  })
+  .then(data => {
+    console.log("Tarea agregada:", data);
+    window.location.reload();
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Hubo un error al agregar la tarea.");
+  });
+}
+
+
+function DeleteTask(){
+
+}
+

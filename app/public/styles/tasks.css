@@ -1,10 +1,12 @@
 main {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
 }
 
 h2 {
-  color: white;
+  font-family: "JetBrains Mono", monospace;
+  color: rgb(241, 83, 255);
 }
 
 .tareas-inc,
@@ -13,6 +15,9 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 30px;
+  background: #f3e8ff;
+  border-radius: 10px;
 }
 
 ul {
@@ -56,4 +61,116 @@ ul li:hover {
   color: #6a4595;
   text-decoration: line-through;
   font-style: italic;
+}
+
+.butons {
+  width: 100px;
+  height: 50px;
+  background-color: #ae00ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete {
+  width: 100px;
+  height: 50px;
+  background-color: #ff0022;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.butons:hover {
+  background-color: #470bb8;
+}
+
+.tasker {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 200px;
+  height: 380px;
+  padding: 24px;
+  margin: 40px;
+  background: linear-gradient(135deg, #be82ff, #e2c4ff);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(128, 0, 128, 0.3);
+  font-family: "JetBrains Mono", monospace;
+  color: #3b003b;
+}
+
+.tasker h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #4c0070;
+  text-align: center;
+}
+
+.tasker label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #4c0070;
+}
+
+.tasker input,
+.tasker select {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  background-color: #f7eaff;
+  color: #3b003b;
+  box-shadow: inset 0 0 4px rgba(128, 0, 128, 0.1);
+}
+
+.tasker input:focus,
+.tasker select:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(128, 0, 255, 0.4);
+}
+
+.tasker button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #9e4dff;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tasker button:hover {
+  background-color: #7d35cc;
+}
+
+.card-task {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  margin: 10px 0 30px 30px;
+  background: linear-gradient(135deg, #be82ff, #e2c4ff);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(128, 0, 128, 0.3);
+  font-family: "JetBrains Mono", monospace;
+  color: #3b003b;
+}
+
+.card-none {
+  display: none;
 }
