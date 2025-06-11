@@ -1,6 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(100deg, #9106ee, #ad0bec, #d806eb, #3f00b3);
+  background: linear-gradient(100deg, #9106ee, #3f00b3);
 }
 
 header {
@@ -8,10 +8,13 @@ header {
   display: flex;
   justify-content: space-around;
   gap: 70%;
+  border-bottom: 1px solid white;
 }
 
 #titulo {
   color: white;
+  width: 300px;
+  font-size: 30px;
 }
 
 button {
@@ -29,4 +32,15 @@ button {
 
 button:hover {
   background-color: #3f00b3;
+}
+
+footer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  border-top: 2px solid #3f00b3;
+  color: white;
 }

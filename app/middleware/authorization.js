@@ -66,7 +66,8 @@ export function GetUserFromToken(req, res, next) {
 
   try {
     const decoded = jsonwebtoken.verify(token, process.env.JWT_SIGN);
-    req.user = decoded.user;  
+    req.user = decoded.user;
+    req.userID = decoded.id  
     next();
   } catch (error) {
     console.log('Error verificando token:', error.message);

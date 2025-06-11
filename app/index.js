@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import { methods as auth } from './controllers/auth.controller.js';
 import { methods as authorization } from './middleware/authorization.js';
 
+import { query } from './model/model.js';
+
 // Fix para __dirname
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -36,6 +38,18 @@ server.get("/home",authorization.HomeIfVerified, (req, res) => {res.sendFile(__d
 server.get("/api/usuario", authorization.GetUserFromToken, (req, res) => {
     res.json({ username: req.user });
 });
+server.get("/api/tareas", authorization.GetUserFromToken, async (req, res) => {
+    try {
+      const idUsuario = req.userID;  // lo que guardaste en el middleware
+      const resultado = await query('SELECT * FROM tarea WHERE idUsuario = $1', [idUsuario]);
+  
+      res.json(resultado.rows); // enviás las tareas como arreglo de objetos
+
+    } catch (error) {
+      console.error('Error al obtener tareas:', error);
+      res.status(500).json({ status: 'Error', message: 'Error interno del servidor' });
+    }
+  });
 
 
 server.post("/api/register",  auth.Register)
