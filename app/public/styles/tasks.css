@@ -66,6 +66,7 @@ ul li:hover {
 .butons {
   width: 100px;
   height: 50px;
+  margin-bottom: 5px;
   background-color: #ae00ff;
   color: white;
   border: none;
@@ -80,6 +81,19 @@ ul li:hover {
   width: 100px;
   height: 50px;
   background-color: #ff0022;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save {
+  width: 100px;
+  height: 50px;
+  background-color: #2f00ff;
   color: white;
   border: none;
   border-radius: 8px;
@@ -159,16 +173,64 @@ ul li:hover {
 .card-task {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  max-width: 480px;
-  padding: 24px;
-  margin: 10px 0 30px 30px;
-  background: linear-gradient(135deg, #be82ff, #e2c4ff);
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(128, 0, 128, 0.3);
+  gap: 12px;
+  padding: 10px;
+  background: linear-gradient(100deg, #9106ee, #3f00b3);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(128, 0, 128, 0.2);
+  width: 90%;
+  max-width: 400px;
+  margin: 10px auto;
   font-family: "JetBrains Mono", monospace;
-  color: #3b003b;
+}
+
+.card-task input,
+.card-task select {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #d3acf8;
+  padding: 6px 4px;
+  font-size: 16px;
+  color: #e8d4ff; /* texto visible */
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.card-task input::placeholder {
+  color: #c29fff;
+  opacity: 0.7;
+}
+
+.card-task select {
+  color: #ec69ec;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.card-task input:focus,
+.card-task select:focus {
+  border-color: #d8a6ff;
+}
+
+.card-task .delete,
+.card-task .save {
+  background-color: #a855f7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.card-task .delete:hover {
+  background-color: #d946ef;
+}
+
+.card-task .save:hover {
+  background-color: #8b5cf6;
 }
 
 .card-none {

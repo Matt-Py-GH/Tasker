@@ -79,11 +79,56 @@ server.post("/api/tareas", authorization.GetUserFromToken, async (req, res) => {
 });
 
 //DELETE
-server.delete("/api/tareas", authorization.GetUserFromToken, async (req, res) => {
+server.delete("/api/tareas/:id", authorization.GetUserFromToken, async (req, res) => {
   const idUsuario = req.userID;
-  const resultado = await query('SELECT * FROM tarea WHERE idUsuario = $1', [idUsuario]);
+  const idTarea = req.params.id;
 
-  await query("DELETE FROM Tarea WHERE id = $1", [req.id])
+  try {
+    // Podés verificar si la tarea pertenece al usuario antes de eliminar
+    const tarea = await query('SELECT * FROM tarea WHERE id = $1 AND idUsuario = $2', [idTarea, idUsuario]);
+    
+    if (tarea.length === 0) {
+      return res.status(404).json({ message: "Tarea no encontrada o no autorizada" });
+    }
 
+    await query("DELETE FROM tarea WHERE id = $1 AND idUsuario = $2", [idTarea, idUsuario]);
+
+    res.json({ message: "Tarea eliminada correctamente" });
+  } catch (err) {
+    console.error("Error eliminando tarea:", err);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
 });
+
+//PATCH
+server.patch("/api/tareas/:id", authorization.GetUserFromToken, async (req, res) => {
+  const idUsuario = req.userID;
+  const idTarea = req.params.id;
+  const { nombre, descripcion, estado, prioridad } = req.body;
+
+  try {
+    // Verificamos que la tarea le pertenezca al usuario
+    const tareaExistente = await query(
+      "SELECT * FROM tarea WHERE id = $1 AND idUsuario = $2",
+      [idTarea, idUsuario]
+    );
+
+    if (tareaExistente.rows.length === 0) {
+      return res.status(404).json({ error: "Tarea no encontrada o no autorizada" });
+    }
+
+    // Actualizamos la tarea
+    await query(
+      "UPDATE tarea SET nombre = $1, descripcion = $2, estado = $3, prioridad = $4 WHERE id = $5",
+      [nombre, descripcion, estado, prioridad, idTarea]
+    );
+
+    res.json({ mensaje: "Tarea actualizada correctamente" });
+  } catch (err) {
+    console.error("Error actualizando tarea:", err);
+    res.status(500).json({ error: "Error al actualizar tarea" });
+  }
+});
+
+
 

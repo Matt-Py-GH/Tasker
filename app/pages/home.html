@@ -26,7 +26,7 @@
       </div>
 
       <div class="tasker">
-        <h2>Create Task</h2>
+        <h2>Create task</h2>
 
         <label for="task-name">Task name:</label>
         <input type="text" id="task-name" placeholder="Enter task title" />
@@ -57,10 +57,29 @@
     </main>
 
     <article class="card-task card-none" id="card-task">
-      <span>Prioridad</span>
-      <h1>Title task</h1>
-      <p>Descripcion</p>
+      <input
+        type="text"
+        id="task-name-edit"
+        class="task-name-edit"
+        placeholder="Enter task title"
+      />
+      <select id="task-priority-edit">
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
+        <option value="4">Urgent</option>
+      </select>
+      <select id="task-state-edit">
+        <option value="1" selected>Incompleted</option>
+        <option value="2">Completed</option>
+      </select>
+      <input
+        type="text"
+        id="task-desc-edit"
+        placeholder="Enter details (optional)"
+      />
       <button class="delete">Delete task</button>
+      <button class="save">Save task</button>
     </article>
   </body>
 </html>
