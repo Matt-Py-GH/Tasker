@@ -60,7 +60,7 @@ GetTasksByUser().then(tareas => {
   ulCompletas.innerHTML = "";
 
   if (!tareas || tareas.length === 0) {
-    ulIncompletas.innerHTML = "<li>No tienes tareas aún.</li>";
+    ulIncompletas.innerHTML = "<li>No tasks yet.</li>";
     return;
   }
 
@@ -95,9 +95,12 @@ GetTasksByUser().then(tareas => {
 const addTask = document.getElementById("addTask").addEventListener("click", AddTask)
 
 function AddTask() {
-  const nombre = document.getElementById("task-name").value;
-  const descripcion = document.getElementById("task-desc").value;
   const prioridad = parseInt(document.getElementById("task-priority").value);
+  const descripcion = document.getElementById("task-desc").value;
+  const prioridades = ["Low", "Medium", "High", "Urgent"];
+  const nombreInput = document.getElementById("task-name").value;
+  const nombre = `${nombreInput} (${prioridades[prioridad - 1]})`;
+
 
   if (!nombre) {
     return;
@@ -196,10 +199,24 @@ document.querySelector(".save").addEventListener("click", () => {
       tareaSeleccionada = null;
     })
     .catch(err => {
-      console.error("Error actualizando tarea:", err);
-      alert("No se pudo guardar la tarea.");
+      console.error("Error actualizando tarea:", err); 
     });
 });
 
 
+document.getElementById("deleteAll").addEventListener("click", () => {
+  tareasCompletadas = tareasUsuario.filter(t => t.estado !== 2);
+  tareasCompletadas.forEach(tarea => {
+    fetch(`/api/tareas/${tarea.id}`, {  
+      method: "DELETE",
+      credentials: "include"
+    })
+    .then(res => {
+      if(!res.ok) throw new Error("Error al eliminar tarea.");
 
+      const li = document.querySelector(`li[data-id='${tarea.id}']`);
+      if (li) {li.remove(); console.log("DELETED")}
+    })
+      .catch(err => console.error(err))
+  });
+})

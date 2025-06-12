@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#3f00b3" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Tasker" />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="title" content="Tasker - Simple & Modern Task Organizer" />
+    <meta
+      name="description"
+      content="Organize your tasks easily with Tasker. A simple and modern task management app for daily productivity."
+    />
+    <meta
+      name="keywords"
+      content="Tasker, task management, to-do list, productivity, planner, organizer, simple app"
+    />
+    <meta name="author" content="Tasker Team" />
+
+    <meta
+      property="og:title"
+      content="Tasker - Simple & Modern Task Organizer"
+    />
+    <meta
+      property="og:description"
+      content="Organize your tasks easily with Tasker. A simple and modern task management app for daily productivity."
+    />
+    <meta property="og:image" content="/resources/icon/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/home" />
+
+    <link rel="icon" href="/resources/icon/icon.png" type="image/png" />
+
     <link rel="stylesheet" href="styles/home.css" />
     <link rel="stylesheet" href="styles/tasks.css" />
-    <link rel="icon" href="/resources/icon/icon.png" />
-    <script src="scripts/home.js" defer></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
       rel="stylesheet"
     />
+
+    <script src="scripts/home.js" defer></script>
+
     <title>Home - Tasker</title>
   </head>
   <body>
@@ -63,21 +101,29 @@
         class="task-name-edit"
         placeholder="Enter task title"
       />
-      <select id="task-priority-edit">
-        <option value="1">Low</option>
-        <option value="2">Medium</option>
-        <option value="3">High</option>
-        <option value="4">Urgent</option>
-      </select>
-      <select id="task-state-edit">
-        <option value="1" selected>Incompleted</option>
-        <option value="2">Completed</option>
-      </select>
+
+      <div>
+        <select id="task-priority-edit">
+          <option value="1">Low</option>
+          <option value="2">Medium</option>
+          <option value="3">High</option>
+          <option value="4">Urgent</option>
+        </select>
+      </div>
+
+      <div>
+        <select id="task-state-edit">
+          <option value="1" selected>Incomplete</option>
+          <option value="2">Completed</option>
+        </select>
+      </div>
+
       <input
         type="text"
         id="task-desc-edit"
         placeholder="Enter details (optional)"
       />
+
       <button class="delete">Delete task</button>
       <button class="save">Save task</button>
     </article>
