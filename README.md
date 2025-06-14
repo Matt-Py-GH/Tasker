@@ -1,10 +1,6 @@
----
-
-# 🚧 **PROJECT IN DEVELOPMENT** 🚧
-
----
-
 # Tasker 🧩
+
+*Organize your tasks easily with Tasker. A simple and modern task management app for daily productivity.*
 
 **Tasker** is a simple web application demonstrating user authentication using Node.js, Express, and PostgreSQL.
 It features user registration, login, session handling with JWT and cookies, and protected routes with middleware authorization.
