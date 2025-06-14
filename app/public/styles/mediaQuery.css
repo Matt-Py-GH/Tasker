@@ -1,0 +1,118 @@
+@media (min-width: 280px) and (max-width: 980px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  #titulo {
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    max-width: 200px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  main {
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+  }
+
+  .tasker,
+  .tareas-inc,
+  .tareas-com {
+    width: 100%;
+    margin: 12px 0;
+  }
+
+  ul {
+    width: 100%;
+    height: 200px;
+    font-size: 12px;
+  }
+
+  ul li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .butons,
+  .delete,
+  .save {
+    width: 100%;
+    max-width: 200px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .tasker {
+    padding: 16px;
+    height: auto;
+    gap: 10px;
+  }
+
+  .tasker h2 {
+    font-size: 18px;
+  }
+
+  .tasker input,
+  .tasker select {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .tasker button {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .card-task {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .card-task input,
+  .card-task select {
+    font-size: 12px;
+  }
+
+  .card-task .delete,
+  .card-task .save {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+@media (min-width: 280px) and (max-width: 600px) {
+  body {
+    background: linear-gradient(130deg, #d6aaff, #a500ff);
+  }
+
+  h1 {
+    font-size: 50px;
+    text-shadow: 1px 1px 3px rgba(255, 83, 255, 0.7);
+  }
+
+  .form-container {
+    max-width: 320px;
+    padding: 2rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  a {
+    font-size: 0.85rem;
+  }
+}
